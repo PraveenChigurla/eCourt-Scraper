@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Court Data Fetcher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #e4ebf5);
+            color: #2d2d2d;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1a237e;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: .5rem;
+        }
+
+        .form-select,
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #d0d7de;
+            transition: all 0.3s ease;
+        }
+
+        .form-select:focus,
+        .form-control:focus {
+            border-color: #3949ab;
+            box-shadow: 0 0 0 4px rgba(57, 73, 171, 0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3949ab, #5c6bc0);
+            border: none;
+            padding: 0.75rem;
+            font-weight: 600;
+            border-radius: 10px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #303f9f, #5c6bc0);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(57, 73, 171, 0.3);
+        }
+
+        .alert {
+            border-radius: 10px;
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Karimnagar District Court Case Fetcher</h1>
+        <form action="/fetch-case" method="post">
+            <div class="mb-3">
+                <label for="case_type" class="form-label">Case Type</label>
+                <select class="form-select" id="case_type" name="case_type" required>
+                    <option value="" disabled selected>Select Case Type</option>
+                    <option value="ARBEP">ARBEP</option>
+                    <option value="A.R.B.O.P">A.R.B.O.P</option>
+                    <option value="AS">AS</option>
+                    <option value="ATA">ATA</option>
+                    <option value="A.T.C.">A.T.C.</option>
+                    <option value="CA">CA</option>
+                    <option value="CC">CC</option>
+                    <option value="CC.APT">CC.APT</option>
+                    <option value="CC.LG">CC.LG</option>
+                    <option value="CCMA">CCMA</option>
+                    <option value="CC-NI">CC-NI</option>
+                    <option value="CEP">CEP</option>
+                    <option value="CMA">CMA</option>
+                    <option value="CO.OP">CO.OP</option>
+                    <option value="COP">COP</option>
+                    <option value="COS">COS</option>
+                    <option value="CRIME NO">CRIME NO</option>
+                    <option value="CRLA">CRLA</option>
+                    <option value="CRLA(JJB)">CRLA(JJB)</option>
+                    <option value="CRLA.MU">CRLA.MU</option>
+                    <option value="CRL.MP">CRL.MP</option>
+                    <option value="CRLMP.BAIL">CRLMP.BAIL</option>
+                    <option value="CRLRP">CRLRP</option>
+                    <option value="CRLRP.MU">CRLRP.MU</option>
+                    <option value="DVC">DVC</option>
+                    <option value="EAS">EAS</option>
+                    <option value="EAT.APPEAL">EAT.APPEAL</option>
+                    <option value="EC.APPEALS">EC.APPEALS</option>
+                    <option value="ELECOP">ELECOP</option>
+                    <option value="E.M.C">E.M.C</option>
+                    <option value="EP">EP</option>
+                    <option value="E.S.I.">E.S.I.</option>
+                    <option value="FA">FA</option>
+                    <option value="F.C.O.P">F.C.O.P</option>
+                    <option value="F.C.O.S">F.C.O.S</option>
+                    <option value="FDP">FDP</option>
+                    <option value="G.W.O.P">G.W.O.P</option>
+                    <option value="H.M.O.P">H.M.O.P</option>
+                    <option value="ID">ID</option>
+                    <option value="IP">IP</option>
+                    <option value="IPA">IPA</option>
+                    <option value="JCC">JCC</option>
+                    <option value="L.A.O.P">L.A.O.P</option>
+                    <option value="LGOP">LGOP</option>
+                    <option value="LPC">LPC</option>
+                    <option value="LRA">LRA</option>
+                    <option value="L.R.A.C">L.R.A.C</option>
+                    <option value="MA">MA</option>
+                    <option value="MC">MC</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MPID">MPID</option>
+                    <option value="MVOP">MVOP</option>
+                    <option value="O.OP">O.OP</option>
+                    <option value="OP">OP</option>
+                    <option value="OS">OS</option>
+                    <option value="PLC">PLC</option>
+                    <option value="PRC">PRC</option>
+                    <option value="RC">RC</option>
+                    <option value="RCA">RCA</option>
+                    <option value="RCC">RCC</option>
+                    <option value="SC">SC</option>
+                    <option value="SCC">SCC</option>
+                    <option value="SC.IE">SC.IE</option>
+                    <option value="SC.MU">SC.MU</option>
+                    <option value="SC.NDPS">SC.NDPS</option>
+                    <option value="SC.POCSO">SC.POCSO</option>
+                    <option value="SC.SPL">SC.SPL</option>
+                    <option value="S.O.P">S.O.P</option>
+                    <option value="STC">STC</option>
+                    <option value="STC-NI">STC-NI</option>
+                    <option value="T.R.CRLMP">T.R.CRLMP</option>
+                    <option value="T.R.O.P">T.R.O.P</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="case_number" class="form-label">Case Number</label>
+                <input type="text" class="form-control" id="case_number" name="case_number" required>
+            </div>
+            <div class="mb-3">
+                <label for="filing_year" class="form-label">Filing Year</label>
+                <input type="text" class="form-control" id="filing_year" name="filing_year" 
+                       pattern="\d{4}" placeholder="e.g., 2011" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Fetch Case</button>
+        </form>
+
+        {% if error %}
+        <div class="alert alert-danger mt-3">{{ error }}</div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
