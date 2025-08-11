@@ -5,16 +5,15 @@ Karimnagar District Court was selected due to its accessible case status page, w
 Setup Instructions
 
 Clone the Repository:git clone <repo-url>
-cd court-data-fetcher
+cd cdf
 
 
 Install Dependencies:Ensure Python 3.8+ is installed, then run:pip install -r requirements.txt
 
 
 Set Up PostgreSQL:
-Option 1: Using Docker (recommended):docker-compose up -d
 
-This starts a PostgreSQL container with the database court_db, user postgres, and password vagrant.
+This starts a PostgreSQL container with the database court_db, user postgres, and password vagrant and table queries.
 Option 2: Local PostgreSQL:Install PostgreSQL locally, create a database named court_db, and ensure the user/password match the .env configuration.
 
 
@@ -23,13 +22,13 @@ Copy .env.sample to .env:cp .env.sample .env
 
 
 Update .env with the correct DATABASE_URL if needed (default: postgresql://postgres:vagrant@localhost:5432/court_db).
-Add ANTICAPTCHA_API_KEY for CAPTCHA solving (see CAPTCHA Strategy).
-
+Add ANTICAPTCHA_API_KEY for CAPTCHA solving (see CAPTCHA Strategy), I have used Demo trial which can be claimed with mobile number and valid for a week with 50 points in credit.
 
 Initialize the Database:python init_db.py
 
 This creates the necessary tables (case_queries) in the court_db database.
-Run the Application:uvicorn app.main:app --reload
+Enter into virtual environment using command "venv\Scripts\Activate" 
+Run the Application:" uvicorn app.main:app --reload "
 
 The app will be available at http://localhost:8000.
 Access the App:Open http://localhost:8000 in a browser to use the form for fetching case details.
@@ -83,4 +82,4 @@ The code is structured for clarity, with modular files (main.py, scraper.py, mod
 The UI prioritizes simplicity and responsiveness, tested on desktop and mobile.
 
 License
-This project is licensed under the MIT License. See LICENSE file for details.
+This project is licensed under the Apache 2.0 License. See LICENSE file for details.
